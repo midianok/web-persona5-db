@@ -1,0 +1,20 @@
+{
+  "name": "persona5db",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Гусев Илья <midian.ip@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/midianok/persona5db",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
