@@ -1,0 +1,5 @@
+
+<div class="container">
+  <app-search (inputed)="filterBySearchRequest($event)"></app-search>
+  <app-persona-list (statClicked)="filterByAliment($event)" [personasList] = "personasToShow" ></app-persona-list>
+</div>

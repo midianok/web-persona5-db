@@ -1,0 +1,46 @@
+<table>
+  <thead>
+    <tr>
+      <th class="right-border">Level</th>
+      <th class="right-border">Name</th>
+      <th class="right-border">Arcana</th>
+      <th>Strength</th>
+      <th>Magic</th>
+      <th>Endurance</th>
+      <th>Agility</th>
+      <th class="right-border">Luck</th>
+      <th>Physical</th>
+      <th>Gun</th>
+      <th>Fire</th>
+      <th>Ice</th>
+      <th>Electric</th>
+      <th>Wind</th>
+      <th>Psychic</th>
+      <th>Nuclear</th>
+      <th>Bless</th>
+      <th>Curse</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let persona of personasList | orderby:'level':'+'">
+  <tr>
+    <td class="right-border">{{persona.level}}</td>
+    <td class="right-border">{{persona.name}}</td>
+    <td class="right-border">{{persona.arcana}}</td>
+    <td>{{persona.strength}}</td>
+    <td>{{persona.magic}}</td>
+    <td>{{persona.endurance}}</td>
+    <td>{{persona.agility}}</td>
+    <td (click)="statusClicked('luck', persona.luck)" class="right-border">{{persona.luck}}</td>
+    <td (click)="statusClicked('physical', persona.physical)" class="stat" [ngClass]="persona.physical">{{persona.physical}}</td>
+    <td (click)="statusClicked('gun', persona.gun)" class="stat" [ngClass]="persona.gun">{{persona.gun}}</td>
+    <td (click)="statusClicked('fire', persona.fire)" class="stat" [ngClass]="persona.fire">{{persona.fire}}</td>
+    <td (click)="statusClicked('ice', persona.ice)" class="stat" [ngClass]="persona.ice">{{persona.ice}}</td>
+    <td (click)="statusClicked('electric', persona.electric)" class="stat" [ngClass]="persona.electric">{{persona.electric}}</td>
+    <td (click)="statusClicked('wind', persona.wind)" class="stat" [ngClass]="persona.wind">{{persona.wind}}</td>
+    <td (click)="statusClicked('psychic', persona.psychic)" class="stat" [ngClass]="persona.psychic">{{persona.psychic}}</td>
+    <td (click)="statusClicked('nuclear', persona.nuclear)" class="stat" [ngClass]="persona.nuclear">{{persona.nuclear}}</td>
+    <td (click)="statusClicked('bless', persona.bless)" class="stat" [ngClass]="persona.bless">{{persona.bless}}</td>
+    <td (click)="statusClicked('curse', persona.curse)" class="stat" [ngClass]="persona.curse">{{persona.curse}}</td>
+  </tr>
+  </tbody>
+</table>
