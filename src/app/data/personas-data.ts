@@ -1,5 +1,5 @@
 // derived partly from https://github.com/aqiu384/aqiu384.github.io/blob/master/p5-tool/js/full_compendium.js
-import {Persona} from "../model/Persona";
+import {Persona} from "../model/persona";
 
 export class PersonasData {
   private static Data = {

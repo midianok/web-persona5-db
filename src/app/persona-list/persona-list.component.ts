@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Persona} from "../model/Persona";
+import {Persona} from "../model/persona";
 import {AlimentClickedEventArg} from "../model/status-clicked-event-arg";
 
 @Component({

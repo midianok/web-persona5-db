@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {PersonasData} from "./data/personas-data";
-import {Persona} from "./model/Persona";
+import {Persona} from "./model/persona";
 import {AlimentClickedEventArg} from "./model/status-clicked-event-arg";
 
 @Component({

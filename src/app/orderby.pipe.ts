@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Persona} from "./model/Persona";
+import {Persona} from "./model/persona";
 
 @Pipe({
   name: 'orderby'
