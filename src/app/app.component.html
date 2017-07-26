@@ -1,7 +1,7 @@
 
 <div class="container">
-  <div *ngIf="alimentFiltersEmpty" class="form-group">
-    <input #searchInput (input)="searchInputChanged()"  class="form-control" placeholder="Persona filter">
+  <div class="form-group">
+    <input #searchInput (input)="searchInputChanged()"  class="form-control" placeholder="Persona filter" [attr.disabled]="alimentFiltersEmpty ? null : ''" >
   </div>
 
   <ul class="list-inline">
