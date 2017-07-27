@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { PersonaListComponent } from './persona-list/persona-list.component';
-import { OrderbyPipe } from './orderby.pipe';
+import { OrderbyPipe } from './infrastructure/orderby.pipe';
 
 @NgModule({
   declarations: [

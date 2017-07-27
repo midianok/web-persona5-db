@@ -1,8 +1,9 @@
 // derived partly from https://github.com/aqiu384/aqiu384.github.io/blob/master/p5-tool/js/full_compendium.js
 import {Persona} from "../model/persona";
+import {Repository} from "../infrastructure/repository";
 
-export class PersonasData {
-  private static Data = {
+export class PersonaStaticDataRepository implements Repository<Persona> {
+  private Data = {
     'Abaddon': {
       'arcana': 'Judgement',
       'level': 74,
@@ -2938,32 +2939,34 @@ export class PersonasData {
     }
   };
 
-  public static getRepository(): Array<Persona> {
+  public getAll(): Persona[] {
     const personas = [];
     for (const key in this.Data) {
-        if (!this.Data.hasOwnProperty(key)){
-          continue;
-        }
+      if (!this.Data.hasOwnProperty(key)){
+        continue;
+      }
 
-        const persona = this.Data[key];
-        persona.name = key;
-        persona.strength = persona.stats[0];
-        persona.magic = persona.stats[1];
-        persona.endurance = persona.stats[2];
-        persona.agility = persona.stats[3];
-        persona.luck = persona.stats[4];
+      const persona = this.Data[key];
+      persona.name = key;
+      persona.strength = persona.stats[0];
+      persona.magic = persona.stats[1];
+      persona.endurance = persona.stats[2];
+      persona.agility = persona.stats[3];
+      persona.luck = persona.stats[4];
 
-        const properties = ['physical', 'gun', 'fire', 'ice', 'electric', 'wind', 'psychic', 'nuclear', 'bless', 'curse'];
-        const elemsValue = {"wk": 0, "-": 1, "rs": 2, "nu": 3, "rp": 4, "ab": 5};
-        for (let i = 0; i < properties.length; i++) {
-          persona[properties[i]] = persona.elems[i];
-          persona[properties[i] + 'Value'] = elemsValue[persona.elems[i]];
-        }
-        personas.push(persona);
+      const properties = ['physical', 'gun', 'fire', 'ice', 'electric', 'wind', 'psychic', 'nuclear', 'bless', 'curse'];
+      const elemsValue = {"wk": 0, "-": 1, "rs": 2, "nu": 3, "rp": 4, "ab": 5};
+      for (let i = 0; i < properties.length; i++) {
+        persona[properties[i]] = persona.elems[i];
+        persona[properties[i] + 'Value'] = elemsValue[persona.elems[i]];
+      }
+
+      personas.push(persona);
     }
 
     return personas;
   }
+
 }
 
 

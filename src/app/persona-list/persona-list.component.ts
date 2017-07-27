@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Persona} from "../model/persona";
-import {AlimentClickedEventArg} from "../model/status-clicked-event-arg";
+import {AlimentClicked} from "../model/aliment-clicked";
 
 @Component({
   selector: 'app-persona-list',
@@ -9,10 +9,10 @@ import {AlimentClickedEventArg} from "../model/status-clicked-event-arg";
 })
 export class PersonaListComponent {
   @Input() personasList: Array<Persona>;
-  @Output() statClicked = new EventEmitter<AlimentClickedEventArg>();
+  @Output() statClicked = new EventEmitter<AlimentClicked>();
 
   statusClicked(alimentName: string, alimentValue: string) {
-    this.statClicked.emit(new AlimentClickedEventArg(alimentName, alimentValue));
+    this.statClicked.emit(new AlimentClicked(alimentName, alimentValue));
   }
 }
 

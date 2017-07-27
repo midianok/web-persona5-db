@@ -1,22 +1,24 @@
-import {Component, ElementRef, ViewChild} from "@angular/core";
-import {PersonasData} from "./data/personas-data";
-import {Persona} from "./model/persona";
-import {AlimentClickedEventArg} from "./model/status-clicked-event-arg";
+import { Component, ElementRef, ViewChild} from "@angular/core";
+import { Persona } from "./model/persona";
+import { AlimentClicked } from "./model/aliment-clicked";
+import { PersonaStaticDataRepository } from "./data/persona-staticdata-repository";
+import {Repository} from "./infrastructure/repository";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ PersonaStaticDataRepository ]
 })
 export class AppComponent {
   @ViewChild('searchInput') searchField: ElementRef;
   personasRepository: Array<Persona>;
   personasToShow: Array<Persona>;
-  alimentFilters: Array<AlimentClickedEventArg> = [];
-  alimentFiltersEmpty: boolean = true;
+  alimentFilters: Array<AlimentClicked> = [];
+  alimentFiltersEmpty = true;
 
-   constructor() {
-     this.personasRepository = PersonasData.getRepository();
+   constructor(personaStaticDataRepository: PersonaStaticDataRepository) {
+     this.personasRepository = personaStaticDataRepository.getAll();
      this.personasToShow = this.personasRepository;
    }
 
@@ -28,7 +30,7 @@ export class AppComponent {
       );
   }
 
-  filterByAliment(clickedAliment: AlimentClickedEventArg) {
+  filterByAliment(clickedAliment: AlimentClicked) {
     const filterAlreadyAdded = this.alimentFilters.some(x =>
       x.alimentName === clickedAliment.alimentName && x.alimentValue === clickedAliment.alimentValue
     );
@@ -44,7 +46,7 @@ export class AppComponent {
     this.alimentFiltersEmpty = false;
   }
 
-  removeFilter(aliment: AlimentClickedEventArg) {
+  removeFilter(aliment: AlimentClicked) {
     this.alimentFilters = this.alimentFilters.filter(
       x => x !== aliment
     );
