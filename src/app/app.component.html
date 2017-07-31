@@ -1,16 +1,16 @@
 
 <div class="container">
-  <div class="form-group">
+  <div class="form-group col-md-offset-4 col-md-3">
     <input #searchInput (input)="searchInputChanged()"  class="form-control" placeholder="Persona filter" [attr.disabled]="alimentFiltersEmpty ? null : ''" >
   </div>
 
   <ul class="list-inline">
     <li class="list-inline-item" *ngFor="let aliment of alimentFilters">
       <span class="label"
-            (click)="removeFilter(aliment)"
+            (click)="removeFilterByAliment(aliment)"
             [ngClass]="aliment.alimentValue">{{aliment.alimentName}} ✖</span>
     </li>
   </ul>
 
-  <app-persona-list (statClicked)="filterByAliment($event)" [personasList] = "personasToShow" ></app-persona-list>
+  <app-persona-list (statClicked)="addFilterByAliment($event)" [personasList] = "personasToShow" ></app-persona-list>
 </div>

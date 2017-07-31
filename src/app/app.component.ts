@@ -2,7 +2,6 @@ import { Component, ElementRef, ViewChild} from "@angular/core";
 import { Persona } from "./model/persona";
 import { AlimentClicked } from "./model/aliment-clicked";
 import { PersonaStaticDataRepository } from "./data/persona-staticdata-repository";
-import {Repository} from "./infrastructure/repository";
 
 @Component({
   selector: 'app-root',
@@ -30,7 +29,7 @@ export class AppComponent {
       );
   }
 
-  filterByAliment(clickedAliment: AlimentClicked) {
+  addFilterByAliment(clickedAliment: AlimentClicked) {
     const filterAlreadyAdded = this.alimentFilters.some(x =>
       x.alimentName === clickedAliment.alimentName && x.alimentValue === clickedAliment.alimentValue
     );
@@ -46,14 +45,14 @@ export class AppComponent {
     this.alimentFiltersEmpty = false;
   }
 
-  removeFilter(aliment: AlimentClicked) {
+  removeFilterByAliment(aliment: AlimentClicked) {
     this.alimentFilters = this.alimentFilters.filter(
       x => x !== aliment
     );
 
-    if (this.alimentFilters.length !== 0){
+    if (this.alimentFilters.length !== 0) {
       let filteredPersonas =  this.personasRepository;
-      for (const alimentFilter of this.alimentFilters){
+      for (const alimentFilter of this.alimentFilters) {
         filteredPersonas = filteredPersonas.filter(
           x => x[alimentFilter.alimentName] === alimentFilter.alimentValue
         );

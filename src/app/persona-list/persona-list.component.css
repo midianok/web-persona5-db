@@ -1,11 +1,10 @@
 * {
   font-size: 14px;
-  text-align: center;
   margin-top: 0;
   margin-right: 0;
+  text-align: center;
 }
 table{
-  width: 100%;
   border: 1px solid #c5c5df;
   border-collapse: collapse;
 }
@@ -18,6 +17,7 @@ tr:hover {
   background: #f0f0f0;
 }
 th {
+
   border-bottom: 1px solid #dfdff9;
 }
 
@@ -51,4 +51,11 @@ th {
 
 .ab {
   color: #4cae4c;
+}
+
+table td:nth-of-type(2) {
+  text-align: left;
+}
+table td:nth-of-type(3) {
+  text-align: left;
 }

@@ -9,9 +9,12 @@ import {AlimentClicked} from "../model/aliment-clicked";
 })
 export class PersonaListComponent {
   @Input() personasList: Array<Persona>;
-  @Output() statClicked = new EventEmitter<AlimentClicked>();
+  @Output() statClicked: EventEmitter<AlimentClicked> = new EventEmitter<AlimentClicked>();
 
   statusClicked(alimentName: string, alimentValue: string) {
+    if (alimentValue === '-') {
+      return;
+    }
     this.statClicked.emit(new AlimentClicked(alimentName, alimentValue));
   }
 }
