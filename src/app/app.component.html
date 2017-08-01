@@ -1,20 +1,8 @@
-
 <div class="container">
-  
-  <div class="form-group col-md-offset-4 col-md-3">
-    <input #searchInput (input)="searchInputChanged()"class="form-control" placeholder="Persona filter" [attr.disabled]="alimentFiltersEmpty ? null : ''" >
+  <app-filter></app-filter>
+
+  <div>
+    <app-persona-list></app-persona-list>
   </div>
 
-  <ul class="list-inline">
-    <li class="list-inline-item" *ngFor="let aliment of alimentFilters">
-      <span class="badge"
-            (click)="removeFilterByAliment(aliment)"
-            [ngClass]="aliment.alimentValue">{{aliment.alimentName}} ✖</span>
-    </li>
-  </ul>
-  
-  <div style="width: 100%">
-    <app-persona-list (statClicked)="addFilterByAliment($event)" [personasList] = "personasToShow" ></app-persona-list>
-  </div>
-  
 </div>

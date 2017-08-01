@@ -1,0 +1,24 @@
+.wk {
+  background-color: #f55535;
+}
+
+.rs {
+  background-color: #31b0d5;
+}
+
+.nu {
+  background-color: #5e5e5e;
+}
+
+.rp {
+  background-color: #caa83c;
+}
+
+.ab {
+  background-color: #4cae4c;
+}
+
+span{
+  font-size: 16px;
+  cursor: pointer;
+}
