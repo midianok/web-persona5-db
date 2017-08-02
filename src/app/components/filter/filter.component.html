@@ -3,11 +3,11 @@
          class="form-control"
          placeholder="Name filter"
          (input)="filterByName()"
-         [attr.disabled]="personaManager.alimentFiltersEmpty ? null : ''" >
+         [attr.disabled]="getCurrentAlimentFilters().length === 0 ? null : ''" >
 </div>
 
 <ul class="list-inline">
-  <li class="list-inline-item" *ngFor="let aliment of personaManager.alimentsFilter">
+  <li class="list-inline-item" *ngFor="let aliment of getCurrentAlimentFilters()">
       <span class="badge"
             (click)="removeFilterByAliment(aliment)"
             [ngClass]="aliment.alimentValue">{{aliment.alimentName}} ✖</span>

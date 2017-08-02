@@ -20,5 +20,9 @@ export class PersonaListComponent {
     }
     this.personaManager.addFilterByAliment(new Aliment(alimentName, alimentValue));
   }
+  
+  getPersonasToShow() {
+   return this.personaManager.getPersonasToShow();
+  }
 }
 

@@ -7,14 +7,22 @@ import {Aliment} from "../model/aliment";
 export class PersonaManagerService {
   private personasRepository: PersonaStaticDataRepository;
 
-  public alimentFiltersEmpty = true;
-  public personasFilter: Array<Persona>;
-  public alimentsFilter: Array<Aliment> = [];
+  private alimentFiltersEmpty = true;
+  private personasFilter: Array<Persona>;
+  private alimentsFilter: Array<Aliment> = [];
 
   constructor(@Inject(PersonaStaticDataRepository) repository ){
     this.personasRepository = repository;
     this.personasFilter = this.personasRepository.personas;
 
+  }
+  
+  getPersonasToShow() {
+    return this.personasFilter;
+  }
+  
+  getCurrentAlimentFilters() {
+    return this.alimentsFilter;
   }
 
   filterByName(nameFilter: string) {

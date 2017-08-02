@@ -10,11 +10,16 @@ import {PersonaManagerService} from "../../services/persona-manager.service";
 export class FilterComponent {
   @ViewChild('searchInput') searchField: ElementRef;
 
-  public personaManager:  PersonaManagerService;
+  private personaManager:  PersonaManagerService;
 
   constructor(personaManager: PersonaManagerService) {
     this.personaManager = personaManager;
   }
+  
+  getCurrentAlimentFilters() {
+   return this.personaManager.getCurrentAlimentFilters(); 
+  }
+
 
   removeFilterByAliment(aliment: Aliment) {
     this.personaManager.removeFilterByAliment(aliment);

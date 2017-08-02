@@ -22,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let persona of personaManager.personasFilter | orderby:'level':'+'">
+  <tr *ngFor="let persona of getPersonasToShow() | orderby:'level':'+'">
     <td class="right-border">{{persona.level}}</td>
     <td class="right-border">{{persona.name}}</td>
     <td class="right-border">{{persona.arcana}}</td>
