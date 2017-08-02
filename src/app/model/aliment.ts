@@ -1,4 +1,4 @@
-export class AlimentClicked {
+export class Aliment {
   readonly alimentName: string;
   readonly alimentValue: string;
 

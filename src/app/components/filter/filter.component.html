@@ -1,0 +1,15 @@
+<div class="form-group">
+  <input #searchInput
+         class="form-control"
+         placeholder="Name filter"
+         (input)="filterByName()"
+         [attr.disabled]="personaManager.alimentFiltersEmpty ? null : ''" >
+</div>
+
+<ul class="list-inline">
+  <li class="list-inline-item" *ngFor="let aliment of personaManager.alimentsFilter">
+      <span class="badge"
+            (click)="removeFilterByAliment(aliment)"
+            [ngClass]="aliment.alimentValue">{{aliment.alimentName}} ✖</span>
+  </li>
+</ul>

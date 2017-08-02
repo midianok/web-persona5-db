@@ -2,8 +2,8 @@
 import {Persona} from "../model/persona";
 import {Repository} from "../infrastructure/repository";
 
-export class PersonaStaticDataRepository implements Repository<Persona> {
-  private Data = {
+export class PersonaStaticDataRepository {
+  private rawDataData = {
     'Abaddon': {
       'arcana': 'Judgement',
       'level': 74,
@@ -2938,15 +2938,16 @@ export class PersonaStaticDataRepository implements Repository<Persona> {
       }
     }
   };
+  public personas: Array<Persona>;
 
-  public getAll(): Persona[] {
+  constructor() {
     const personas = [];
-    for (const key in this.Data) {
-      if (!this.Data.hasOwnProperty(key)){
+    for (const key in this.rawDataData) {
+      if (!this.rawDataData.hasOwnProperty(key)){
         continue;
       }
 
-      const persona = this.Data[key];
+      const persona = this.rawDataData[key];
       persona.name = key;
       persona.strength = persona.stats[0];
       persona.magic = persona.stats[1];
@@ -2964,8 +2965,9 @@ export class PersonaStaticDataRepository implements Repository<Persona> {
       personas.push(persona);
     }
 
-    return personas;
+    this.personas = personas;
   }
+
 
 }
 
