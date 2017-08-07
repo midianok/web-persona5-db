@@ -11,29 +11,39 @@ table {
   border-collapse: collapse;
 }
 
-td, th {
-  padding: 7px;
+table td:nth-of-type(2) {
+  text-align: left;
 }
 
-tr:hover {
+table td:nth-of-type(2):hover {
   cursor: pointer;
-  background: #f0f0f0;
+  background: #d7d7d7;
+}
+
+table td:nth-of-type(3) {
+  text-align: left;
+}
+
+table td:nth-of-type(n+9) {
+  font-weight: bold;
+}
+
+table td:nth-of-type(n+9):hover {
+  cursor: pointer;
+  background: #d7d7d7;
 }
 
 th {
   border-bottom: 1px solid #dfdff9;
 }
 
+td, th {
+  padding: 7px;
+}
+
+
 .right-border {
   border-right: 1px solid #dfdff9;
-}
-
-.stat {
-  font-weight: bold;
-}
-
-.stat:hover {
-  background: #d7d7d7;
 }
 
 .wk {
@@ -56,9 +66,4 @@ th {
   color: #4cae4c;
 }
 
-table td:nth-of-type(2) {
-  text-align: left;
-}
-table td:nth-of-type(3) {
-  text-align: left;
-}
+

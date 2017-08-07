@@ -1,12 +1,11 @@
 import { Component} from "@angular/core";
 import {PersonaManagerService} from "./services/persona-manager.service";
-import {PersonaStaticDataRepository} from "./data/persona-staticdata-repository";
+import {PersonaRepository} from "./data/persona-repository";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [ PersonaManagerService, PersonaStaticDataRepository ]
+  providers: [ PersonaManagerService, PersonaRepository ]
 })
 export class AppComponent {
 }

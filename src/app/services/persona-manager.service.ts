@@ -1,26 +1,32 @@
 import {Inject, Injectable} from "@angular/core";
 import {Persona} from "../model/persona";
-import {PersonaStaticDataRepository} from "../data/persona-staticdata-repository";
 import {Aliment} from "../model/aliment";
+import {PersonaRepository} from "../data/persona-repository";
 
 @Injectable()
 export class PersonaManagerService {
-  private personasRepository: PersonaStaticDataRepository;
+  private personasRepository: PersonaRepository;
 
-  private alimentFiltersEmpty = true;
+  private alimentsFilterEmpty = true;
   private personasFilter: Array<Persona>;
   private alimentsFilter: Array<Aliment> = [];
 
-  constructor(@Inject(PersonaStaticDataRepository) repository ){
+  constructor(@Inject(PersonaRepository) repository ){
     this.personasRepository = repository;
     this.personasFilter = this.personasRepository.personas;
 
   }
-  
+
   getPersonasToShow() {
     return this.personasFilter;
   }
-  
+
+  getPersonaByName(personaName: string) {
+    return this.personasRepository.personas.find(
+      x => x.name === personaName
+    );
+  }
+
   getCurrentAlimentFilters() {
     return this.alimentsFilter;
   }
@@ -46,7 +52,7 @@ export class PersonaManagerService {
     );
 
     this.alimentsFilter.push(clickedAliment);
-    this.alimentFiltersEmpty = false;
+    this.alimentsFilterEmpty = false;
   }
 
   removeFilterByAliment(aliment: Aliment) {
@@ -61,7 +67,7 @@ export class PersonaManagerService {
       this.personasFilter = filteredPersonas;
     } else {
       this.personasFilter = this.personasRepository.personas;
-      this.alimentFiltersEmpty = true;
+      this.alimentsFilterEmpty = true;
     }
   }
 }

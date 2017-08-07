@@ -1,0 +1,47 @@
+table {
+  width: 100%;
+  border: 1px solid #c5c5df;
+}
+
+td, th {
+  text-align: center;
+  padding: 3px;
+}
+
+th {
+  font-size: 14px;
+  border-bottom: 1px solid #dfdff9;
+  text-align: center;
+}
+
+td {
+  font-weight: bold;
+}
+
+h4 {
+  padding-top: 5px;
+}
+
+h2 {
+  padding-top: 10px;
+}
+
+.wk {
+  color: #f55535;
+}
+
+.rs {
+  color: #31b0d5;
+}
+
+.nu {
+  color: #5e5e5e;
+}
+
+.rp {
+  color: #caa83c;
+}
+
+.ab {
+  color: #4cae4c;
+}

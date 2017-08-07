@@ -1,20 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes} from "@angular/router";
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { PersonaListComponent } from './components/persona-list/persona-list.component';
+import { ListComponent } from './components/list/list.component';
+import { DetailsComponent} from "./components/details/details.component";
+import { FilterComponent} from "./components/list/filter/filter.component";
+import { TableComponent } from './components/list/table/table.component';
+
 import { OrderbyPipe } from './infrastructure/orderby.pipe';
-import { FilterComponent } from './components/filter/filter.component';
+
+const appRoutes: Routes = [
+  { path: '', component: ListComponent },
+  { path: 'details/:name', component: DetailsComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonaListComponent,
+    ListComponent,
+    DetailsComponent,
+    FilterComponent,
     OrderbyPipe,
-    FilterComponent
+    TableComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   bootstrap: [AppComponent]
 })

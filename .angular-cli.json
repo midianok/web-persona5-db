@@ -20,16 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../bower_components/tether/dist/css/tether.min.css",
         "../bower_components/bootstrap/dist/css/bootstrap.min.css"
-      ],
-      "scripts": [
-<<<<<<< HEAD
-        "../bower_components/jquery/dist/jquery.min.js",
-        "../bower_components/tether/dist/js/tether.min.js",
-        "../bower_components/bootstrap/dist/js/bootstrap.min.js"
-=======
->>>>>>> fb205b6e3f010af45effdee608ce57382489cf10
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

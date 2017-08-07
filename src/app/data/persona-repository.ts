@@ -1,9 +1,8 @@
 // derived partly from https://github.com/aqiu384/aqiu384.github.io/blob/master/p5-tool/js/full_compendium.js
 import {Persona} from "../model/persona";
-import {Repository} from "../infrastructure/repository";
 
-export class PersonaStaticDataRepository {
-  private rawDataData = {
+export class PersonaRepository {
+  private personasData = {
     'Abaddon': {
       'arcana': 'Judgement',
       'level': 74,
@@ -2942,12 +2941,12 @@ export class PersonaStaticDataRepository {
 
   constructor() {
     const personas = [];
-    for (const key in this.rawDataData) {
-      if (!this.rawDataData.hasOwnProperty(key)){
+    for (const key in this.personasData) {
+      if (!this.personasData.hasOwnProperty(key)){
         continue;
       }
 
-      const persona = this.rawDataData[key];
+      const persona = this.personasData[key];
       persona.name = key;
       persona.strength = persona.stats[0];
       persona.magic = persona.stats[1];
