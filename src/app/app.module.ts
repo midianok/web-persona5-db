@@ -21,8 +21,8 @@ const appRoutes: Routes = [
     ListComponent,
     DetailsComponent,
     FilterComponent,
+    TableComponent,
     OrderbyPipe,
-    TableComponent
   ],
   imports: [
     BrowserModule,
