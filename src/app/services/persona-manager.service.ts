@@ -11,34 +11,39 @@ export class PersonaManagerService {
   private personasFilter: Array<Persona>;
   private alimentsFilter: Array<Aliment> = [];
 
-  constructor(@Inject(PersonaRepository) repository ){
+  constructor(@Inject(PersonaRepository) repository){
     this.personasRepository = repository;
     this.personasFilter = this.personasRepository.personas;
-
   }
 
-  getPersonasToShow() {
+  getPersonasToShow(): Array<Persona> {
     return this.personasFilter;
   }
 
-  getPersonaByName(personaName: string) {
+  getPersonaByName(personaName: string): Persona {
     return this.personasRepository.personas.find(
       x => x.name === personaName
     );
   }
 
-  getCurrentAlimentFilters() {
+  getPersonasByArcana(arcanaName: string): Array<Persona> {
+    return this.personasRepository.personas.filter(
+      x => x.arcana === arcanaName
+    );
+  }
+
+  getCurrentAlimentFilters(): Array<Aliment> {
     return this.alimentsFilter;
   }
 
-  filterByName(nameFilter: string) {
+  filterByName(nameFilter: string): void {
     this.personasFilter =
       this.personasRepository.personas.filter(
         x => x.name.toLocaleLowerCase().includes(nameFilter.toLocaleLowerCase())
       );
   }
 
-  addFilterByAliment(clickedAliment: Aliment) {
+  addFilterByAliment(clickedAliment: Aliment): void {
     const filterAlreadyAdded = this.alimentsFilter.some(x =>
       x.alimentName === clickedAliment.alimentName && x.alimentValue === clickedAliment.alimentValue
     );
@@ -55,7 +60,7 @@ export class PersonaManagerService {
     this.alimentsFilterEmpty = false;
   }
 
-  removeFilterByAliment(aliment: Aliment) {
+  removeFilterByAliment(aliment: Aliment): void {
     this.alimentsFilter = this.alimentsFilter.filter(x => x !== aliment);
 
     if (this.alimentsFilter.length !== 0) {

@@ -1,5 +1,5 @@
 <h2 class="text-center">
-  {{persona.name}} {{persona.arcana}} {{persona.level}}
+  {{persona.name}} | {{persona.arcana}} | {{persona.level}}
 </h2>
 <div class="container offset-md-3 col-md-6 offset-lg-3 col-lg-6">
   <h4 class="text-center">
@@ -77,20 +77,51 @@
     </tr>
     </tbody>
   </table>
-  <h4>
+  <h4 class="text-center">
     Skills
   </h4>
-  <table>
+  <table class="table-striped">
     <thead>
     <tr>
       <th>Level</th>
-      <th>Type</th>
       <th>Name</th>
-      <th>Effect</th>
+      <th>Type</th>
+      <th class="hidden-md-down">Effect</th>
       <th>Cost</th>
     </tr>
     </thead>
     <tbody>
+    <tr *ngFor="let skill of skills">
+      <td>{{skill.getPersonaSkillLevel(persona.name)}}</td>
+      <td>{{skill.name}}</td>
+      <td>{{skill.element}}</td>
+      <td class="hidden-md-down">{{skill.effect}}</td>
+      <td>{{skill.cost}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <h4 class="text-center">
+    Fusion to this persona
+  </h4>
+  <table class="table-striped">
+    <thead>
+    <tr>
+      <th>N</th>
+      <th>Cost</th>
+      <th>Ingredients</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let recipi of recipes; let i = index">
+      <td>{{i + 1}}</td>
+      <td>¥0</td>
+      <td *ngFor="let ingredient of recipi.ingredients"
+          (click)="goToPersonaDetails(ingredient.name)"
+          class="ingredient">
+          {{ingredient.name}} | {{ingredient.arcana}} | {{ingredient.level}}
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>

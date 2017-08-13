@@ -2938,7 +2938,6 @@ export class PersonaRepository {
     }
   };
   public personas: Array<Persona>;
-
   constructor() {
     const personas = [];
     for (const key in this.personasData) {
@@ -2966,8 +2965,6 @@ export class PersonaRepository {
 
     this.personas = personas;
   }
-
-
 }
 
 

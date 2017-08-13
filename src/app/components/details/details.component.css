@@ -4,26 +4,17 @@ table {
 }
 
 td, th {
-  text-align: center;
-  padding: 3px;
+  padding: 10px 5px 10px 5px;
+  text-align: left;
 }
 
 th {
   font-size: 14px;
   border-bottom: 1px solid #dfdff9;
-  text-align: center;
 }
 
-td {
-  font-weight: bold;
-}
-
-h4 {
+h4, h2 {
   padding-top: 5px;
-}
-
-h2 {
-  padding-top: 10px;
 }
 
 .wk {
@@ -44,4 +35,9 @@ h2 {
 
 .ab {
   color: #4cae4c;
+}
+
+.ingredient:hover {
+  cursor: pointer;
+  background: #d7d7d7;
 }

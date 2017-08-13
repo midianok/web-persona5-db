@@ -4033,9 +4033,9 @@ export class SkillRepository {
     return this.getAll().find(x => x.name === skillName);
   }
 
-  getByPersonaName(personaName: string): Array<Skill> {
+  getSkillsByPersonaName(personaName: string): Array<Skill> {
     return this.getAll().filter(x =>
-      x.pesonas.some(
+      x.personas.some(
         z => z.name === personaName
       )
     );
@@ -4060,7 +4060,7 @@ export class SkillRepository {
         if (!rawSkill.personas.hasOwnProperty(personaKey)){
           continue;
         }
-        skill.pesonas.push({name: personaKey, level: rawSkill.personas[personaKey]});
+        skill.personas.push({name: personaKey, level: rawSkill.personas[personaKey]});
       }
       skills.push(skill);
     }

@@ -1,4 +1,4 @@
-export interface Persona {
+export class Persona {
   name?: string;
   arcana: string;
   level: number;
@@ -39,4 +39,24 @@ export interface Persona {
   nuclearValue?: number;
   blessValue?: number;
   curseValue?: number;
+
+  public static sortByLvl(p1: Persona, p2: Persona) {
+    if (p1.level < p2.level){
+      return -1;
+    }
+    if (p1.level > p2.level) {
+      return 1;
+    }
+    return 0;
+  }
+
+  public static sortByLvlDesc(p1: Persona, p2: Persona) {
+    if (p1.level < p2.level){
+      return 1;
+    }
+    if (p1.level > p2.level) {
+      return -1;
+    }
+    return 0;
+  }
 }

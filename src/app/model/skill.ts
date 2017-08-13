@@ -5,5 +5,9 @@ export class Skill{
   element?: string;
   fuse?: string;
   talk?: string;
-  pesonas: Array<{name: string, level: number}> = [];
+  personas: Array<{name: string, level: number}> = [];
+  getPersonaSkillLevel(name: string): number{
+    const persona = this.personas.find(x => x.name === name);
+    return persona.level;
+  }
 }
