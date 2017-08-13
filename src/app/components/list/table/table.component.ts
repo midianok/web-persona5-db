@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { PersonaManagerService } from '../../../services/persona-manager.service';
+import { PersonaService } from '../../../services/persona.service';
 import { Aliment } from '../../../model/aliment';
-import {Router} from "@angular/router";
-import {SkillRepository} from "../../../data/skill-repository";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-table',
@@ -10,18 +9,16 @@ import {SkillRepository} from "../../../data/skill-repository";
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  constructor(private personaManager: PersonaManagerService,
+  constructor(private personaService: PersonaService,
               private router: Router) {}
 
   addFilterByAliment(alimentName: string, alimentValue: string) {
-    if (alimentValue === '-') {
-      return;
-    }
-    this.personaManager.addFilterByAliment(new Aliment(alimentName, alimentValue));
+    if (alimentValue === '-') return;
+    this.personaService.addFilterByAliment(new Aliment(alimentName, alimentValue));
   }
 
   getPersonasToShow() {
-    return this.personaManager.getPersonasToShow();
+    return this.personaService.getPersonasToShow();
   }
 
   goToPersonaDetails(personaName: string) {

@@ -1,46 +1,41 @@
-import {Inject, Injectable} from "@angular/core";
-import {FusonRepository} from "../data/fuson-repository";
-import {PersonaManagerService} from "./persona-manager.service";
-import {Persona} from "../model/persona";
-import {Recipe} from "../model/recipe";
+import {Inject, Injectable} from '@angular/core';
+import {FusonRepository} from '../data/fuson-repository';
+import {PersonaService} from './persona.service';
+import {Persona} from '../model/persona';
+import {Recipe} from '../model/recipe';
 
 @Injectable()
 export class FusonService {
   constructor(@Inject(FusonRepository) private fusonRepository,
-              @Inject(PersonaManagerService) private personaManager) {
-  }
+              @Inject(PersonaService) private personaManager) { }
 
   public getPersonaToRecipes(persona: Persona): Array<Recipe> {
     const arcanaCombos = this.fusonRepository.arcana2Combos.filter(x => x.result === persona.arcana);
-    const personaCombos = [];
 
-    for (const arcanaCombo of arcanaCombos) {
-      const firstIngredient = this.personaManager.getPersonasByArcana(arcanaCombo.source[0]);
-      const secondIngredient = this.personaManager.getPersonasByArcana(arcanaCombo.source[1]);
-      personaCombos.push({firstIngredient: firstIngredient, secondIngredient: secondIngredient});
-    }
+    const personaCombos = arcanaCombos.map(x => {
+      const firstIngredient = this.personaManager.getPersonasByArcana(x.source[0]);
+      const secondIngredient = this.personaManager.getPersonasByArcana(x.source[1]);
+      return {firstIngredient, secondIngredient};
+    });
 
     const resultRecepie = [];
     for (const combo of personaCombos) {
       for (const firstIngredient of combo.firstIngredient) {
-        if ( firstIngredient.name === persona.name) {
-          continue;
-        }
+        if ( firstIngredient.name === persona.name) continue;
         for (const secondIngredient of combo.secondIngredient) {
           const recepieAlreadyAdded = resultRecepie.some(x =>
             x.ingredients[0] === firstIngredient && x.ingredients[1] === secondIngredient ||
             x.ingredients[0] === secondIngredient && x.ingredients[1] === firstIngredient
           );
 
-          if ( secondIngredient.name === persona.name || firstIngredient === secondIngredient || recepieAlreadyAdded) {
-            continue;
-          }
+          if (secondIngredient.name === persona.name ||
+              firstIngredient === secondIngredient ||
+              recepieAlreadyAdded) continue;
 
           const result = this.fuse(firstIngredient, secondIngredient);
           if (result && result.name === persona.name) {
             resultRecepie.push(new Recipe([firstIngredient, secondIngredient], result));
           }
-
         }
       }
     }

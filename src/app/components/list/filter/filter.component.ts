@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Aliment} from "../../../model/aliment";
-import {PersonaManagerService} from "../../../services/persona-manager.service";
+import {PersonaService} from "../../../services/persona.service";
 
 @Component({
   selector: 'app-filter',
@@ -9,17 +9,17 @@ import {PersonaManagerService} from "../../../services/persona-manager.service";
 })
 export class FilterComponent {
   @ViewChild('searchInput') searchField: ElementRef;
-  constructor(private personaManager: PersonaManagerService) { }
+  constructor(private personaService: PersonaService) { }
 
   getCurrentAlimentFilters() {
-    return this.personaManager.getCurrentAlimentFilters();
+    return this.personaService.getCurrentAlimentFilters();
   }
 
   removeFilterByAliment(aliment: Aliment) {
-    this.personaManager.removeFilterByAliment(aliment);
+    this.personaService.removeFilterByAliment(aliment);
   }
 
   filterByName() {
-    this.personaManager.filterByName(this.searchField.nativeElement.value);
+    this.personaService.addFilterByName(this.searchField.nativeElement.value);
   }
 }

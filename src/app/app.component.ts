@@ -1,19 +1,21 @@
 import { Component} from "@angular/core";
-import {PersonaManagerService} from "./services/persona-manager.service";
-import {PersonaRepository} from "./data/persona-repository";
-import {SkillRepository} from "./data/skill-repository";
-import {FusonRepository} from "./data/fuson-repository";
-import {FusonService} from "./services/fuson.service";
+import { PersonaRepository } from "./data/persona-repository";
+import { SkillRepository } from "./data/skill-repository";
+import { FusonRepository } from "./data/fuson-repository";
+import { FusonService } from "./services/fuson.service";
+import { SkillService } from "./services/skill.service";
+import { PersonaService } from "./services/persona.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<router-outlet></router-outlet>',
   providers: [
-    PersonaManagerService,
-    FusonService,
     PersonaRepository,
     SkillRepository,
     FusonRepository,
+    PersonaService,
+    FusonService,
+    SkillService,
     ]
 })
 export class AppComponent {

@@ -1,8 +1,6 @@
 // derived partly from https://github.com/aqiu384/aqiu384.github.io/blob/master/p5-tool/js/full_compendium.js
-import {Persona} from "../model/persona";
-
 export class PersonaRepository {
-  private personasData = {
+  public personasData = {
     'Abaddon': {
       'arcana': 'Judgement',
       'level': 74,
@@ -2937,34 +2935,6 @@ export class PersonaRepository {
       }
     }
   };
-  public personas: Array<Persona>;
-  constructor() {
-    const personas = [];
-    for (const key in this.personasData) {
-      if (!this.personasData.hasOwnProperty(key)){
-        continue;
-      }
-
-      const persona = this.personasData[key];
-      persona.name = key;
-      persona.strength = persona.stats[0];
-      persona.magic = persona.stats[1];
-      persona.endurance = persona.stats[2];
-      persona.agility = persona.stats[3];
-      persona.luck = persona.stats[4];
-
-      const properties = ['physical', 'gun', 'fire', 'ice', 'electric', 'wind', 'psychic', 'nuclear', 'bless', 'curse'];
-      const elemsValue = {"wk": 0, "-": 1, "rs": 2, "nu": 3, "rp": 4, "ab": 5};
-      for (let i = 0; i < properties.length; i++) {
-        persona[properties[i]] = persona.elems[i];
-        persona[properties[i] + 'Value'] = elemsValue[persona.elems[i]];
-      }
-
-      personas.push(persona);
-    }
-
-    this.personas = personas;
-  }
 }
 
 

@@ -1,7 +1,5 @@
-import {Skill} from "../model/skill";
-
 export class SkillRepository {
-  private skillsData = {
+  public skillsData = {
     "Absorb Bless": {
       "effect": "Absorb Bless attacks.",
       "element": "passive",
@@ -4028,43 +4026,5 @@ export class SkillRepository {
       "talk": "Naga"
     }
   };
-
-  getBySkillName(skillName: string): Skill {
-    return this.getAll().find(x => x.name === skillName);
-  }
-
-  getSkillsByPersonaName(personaName: string): Array<Skill> {
-    return this.getAll().filter(x =>
-      x.personas.some(
-        z => z.name === personaName
-      )
-    );
-  }
-
-  getAll(): Array<Skill>{
-    const skills = [];
-    for (const skillKey in this.skillsData){
-      if (!this.skillsData.hasOwnProperty(skillKey)){
-        continue;
-      }
-      const rawSkill = this.skillsData[skillKey];
-
-      const skill = new Skill();
-      skill.name = skillKey;
-      skill.cost = rawSkill.cost;
-      skill.effect = rawSkill.effect;
-      skill.element = rawSkill.element;
-      skill.fuse = rawSkill.fuse;
-      skill.talk = rawSkill.talk;
-      for (const personaKey in rawSkill.personas) {
-        if (!rawSkill.personas.hasOwnProperty(personaKey)){
-          continue;
-        }
-        skill.personas.push({name: personaKey, level: rawSkill.personas[personaKey]});
-      }
-      skills.push(skill);
-    }
-    return skills;
-  }
 }
 

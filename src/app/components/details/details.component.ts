@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { PersonaManagerService } from "../../services/persona-manager.service";
+import { PersonaService } from "../../services/persona.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { Persona } from "../../model/persona";
-import {SkillRepository} from "../../data/skill-repository";
 import {Skill} from "../../model/skill";
 import {Recipe} from "../../model/recipe";
 import {FusonService} from "../../services/fuson.service";
+import {SkillService} from "../../services/skill.service";
 
 @Component({
   selector: 'app-details',
@@ -17,20 +17,20 @@ export class DetailsComponent {
   skills: Array<Skill>;
   recipes: Array<Recipe>;
 
-  constructor(personaManagerService: PersonaManagerService,
+  constructor(personaService: PersonaService,
               fusonService: FusonService,
-              skillRepository: SkillRepository,
+              skillService: SkillService,
               route: ActivatedRoute,
               private router: Router) {
     route.params.subscribe(x => {
       const personaName = x.name;
-      this.persona = personaManagerService.getPersonaByName(personaName);
-      this.skills = skillRepository.getSkillsByPersonaName(personaName);
+      this.persona = personaService.getPersonaByName(personaName);
+      this.skills = skillService.getSkillsByPersonaName(personaName);
       this.recipes = fusonService.getPersonaToRecipes(this.persona);
     });
   }
 
-  goToPersonaDetails(personaName: string) {
+  goToPersonaDetails(personaName: string): void {
     this.router.navigate(['details', personaName]);
   }
 }
