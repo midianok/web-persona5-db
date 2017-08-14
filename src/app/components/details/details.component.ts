@@ -22,11 +22,13 @@ export class DetailsComponent {
               skillService: SkillService,
               route: ActivatedRoute,
               private router: Router) {
+
     route.params.subscribe(x => {
       const personaName = x.name;
       this.persona = personaService.getPersonaByName(personaName);
       this.skills = skillService.getSkillsByPersonaName(personaName);
       this.recipes = fusonService.getPersonaToRecipes(this.persona);
+      window.scrollTo(0, 0);
     });
   }
 
