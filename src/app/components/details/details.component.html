@@ -105,23 +105,23 @@
   </h4>
   <table class="table-striped">
     <thead>
-    <tr>
-      <th>N</th>
-      <th>Cost</th>
-      <th>Ingredients</th>
-      <th></th>
-    </tr>
+      <tr>
+        <th>N</th>
+        <th>Cost</th>
+        <th>Ingredients</th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let recipi of recipes; let i = index">
-      <td>{{i + 1}}</td>
-      <td>¥0</td>
-      <td *ngFor="let ingredient of recipi.ingredients"
-          (click)="goToPersonaDetails(ingredient.name)"
-          class="ingredient">
-          {{ingredient.name}} | {{ingredient.arcana}} | {{ingredient.level}}
-      </td>
-    </tr>
+        <tr *ngFor="let recipi of recipes; let i = index">
+            <td>{{i + 1}}</td>
+          <td>{{recipi.price | currency:'JPY':true}}</td>
+          <td *ngFor="let ingredient of recipi.ingredients"
+              (click)="goToPersonaDetails(ingredient.name)"
+              class="ingredient">
+              {{ingredient.name}} | {{ingredient.arcana}} | {{ingredient.level}}
+          </td>
+      </tr>
     </tbody>
   </table>
 </div>

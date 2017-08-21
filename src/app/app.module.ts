@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     DetailsComponent,
     FilterComponent,
     TableComponent,
-    OrderbyPipe,
+    OrderbyPipe
   ],
   imports: [
     BrowserModule,

@@ -261,7 +261,7 @@ export class FusonRepository {
     { 'source': ['Sun', 'Judgement'], 'result': 'Death' },
     { 'source': ['Judgement', 'Judgement'], 'result': 'Judgement' }
   ];
-  private specialCombos = [
+  public specialCombos = [
     { 'result': 'Alice', 'sources': ['Nebiros', 'Belial'] },
     { 'result': 'Ardha', 'sources': ['Parvati', 'Shiva'] },
     { 'result': 'Asura-Ou', 'sources': ['Zouchouten', 'Jikokuten', 'Koumokuten', 'Bishamonten'] },

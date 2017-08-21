@@ -16,13 +16,11 @@ export class DetailsComponent {
   persona: Persona;
   skills: Array<Skill>;
   recipes: Array<Recipe>;
-
   constructor(personaService: PersonaService,
               fusonService: FusonService,
               skillService: SkillService,
               route: ActivatedRoute,
               private router: Router) {
-
     route.params.subscribe(x => {
       const personaName = x.name;
       this.persona = personaService.getPersonaByName(personaName);
