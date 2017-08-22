@@ -1,0 +1,45 @@
+<h4 class="text-center">
+  Elements
+</h4>
+<table>
+  <thead>
+  <tr class="hidden-md-down">
+    <th>Physical</th>
+    <th>Gun</th>
+    <th>Fire</th>
+    <th>Ice</th>
+    <th>Electric</th>
+    <th>Wind</th>
+    <th>Psychic</th>
+    <th>Nuclear</th>
+    <th>Bless</th>
+    <th>Curse</th>
+  </tr>
+  <tr class="hidden-lg-up">
+    <th>Ph</th>
+    <th>G</th>
+    <th>F</th>
+    <th>I</th>
+    <th>E</th>
+    <th>W</th>
+    <th>Ps</th>
+    <th>N</th>
+    <th>B</th>
+    <th>C</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td [ngClass]="persona.physical">{{persona.physical}}</td>
+    <td [ngClass]="persona.gun">{{persona.gun}}</td>
+    <td [ngClass]="persona.fire">{{persona.fire}}</td>
+    <td [ngClass]="persona.ice">{{persona.ice}}</td>
+    <td [ngClass]="persona.electric">{{persona.electric}}</td>
+    <td [ngClass]="persona.wind">{{persona.wind}}</td>
+    <td [ngClass]="persona.psychic">{{persona.psychic}}</td>
+    <td [ngClass]="persona.nuclear">{{persona.nuclear}}</td>
+    <td [ngClass]="persona.bless">{{persona.bless}}</td>
+    <td [ngClass]="persona.curse">{{persona.curse}}</td>
+  </tr>
+  </tbody>
+</table>

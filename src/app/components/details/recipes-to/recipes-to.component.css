@@ -1,0 +1,8 @@
+table > tbody > tr > td:last-child {
+  border-right: 1px solid #c5c5df;
+}
+
+.ingredient:hover {
+  cursor: pointer;
+  background: #d7d7d7;
+}

@@ -88,7 +88,7 @@ export class FusonService {
   }
 
   private getApproxCost(persona1: Persona, persona2: Persona): number {
-    return ((27 * persona1.level * persona1.level) + (126 * persona1.level) + 2147) +
-           ((27 * persona2.level * persona2.level) + (126 * persona2.level) + 2147);
+    return ((27 * (persona1.level * 2)) + (126 * persona1.level) + 2147) +
+           ((27 * (persona2.level * 2)) + (126 * persona2.level) + 2147);
   }
 }

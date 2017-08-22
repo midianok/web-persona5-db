@@ -1,12 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Persona} from "../model/persona";
 
 @Pipe({
   name: 'orderby'
 })
 export class OrderbyPipe implements PipeTransform {
-  transform(value: Array<Persona>, by: string, desc?: string): any {
-
+  transform(value: Array<any>, by: string, desc?: string): any {
     if (desc !== null && desc === '+'){
       return value.sort((a, b) => {
         if (a[by] > b[by]){
@@ -28,7 +26,5 @@ export class OrderbyPipe implements PipeTransform {
       }
       return 0;
     });
-
   }
-
 }
