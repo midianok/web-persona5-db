@@ -30,7 +30,7 @@ export class FusonService {
       for (const normalPersona of normalPersonas) {
         if (rarePerosna === normalPersona) continue;
 
-        const result = this.rareFusion(rarePerosna, normalPersona);
+        const result = this.rareFuse(rarePerosna, normalPersona);
         if (!result || result.name !== persona.name) continue;
 
         const price = this.getCost([rarePerosna, normalPersona]);
@@ -42,7 +42,7 @@ export class FusonService {
 
   private getNormalFusonRecipes(persona: Persona): Array<Recipe> {
     const resultRecepies = [];
-    const possibleCombos = this.getPossibleCombosByArcana(persona.arcana);
+    const possibleCombos = this.getPossibleCombosByResultArcana(persona.arcana);
     for (const combo of possibleCombos) {
       for (const firstIngredient of combo.firstIngredient) {
         if ( firstIngredient.name === persona.name) continue;
@@ -68,21 +68,22 @@ export class FusonService {
 
   private normalFuse(persona1: Persona, persona2: Persona): Persona {
     if (persona1.rare || persona2.rare) {
-      return;
+      return null;
     }
     const level = 1 + Math.floor((persona1.level + persona2.level) / 2);
     const resultArcana = this.getResultArcana(persona1.arcana, persona2.arcana);
+    if (!resultArcana) return null;
 
     if (persona1.arcana !== persona2.arcana) {
       const possibleResults = this.personaManager.getPersonasByArcana(resultArcana).sort(Persona.sortByLvl);
       return possibleResults.find(x => x.level >= level);
     } else {
       const possibleResults = this.personaManager.getPersonasByArcana(resultArcana).sort(Persona.sortByLvlDesc);
-      return possibleResults.find(x =>  x.level <= level && !(x === persona1 || x === persona2));
+      return possibleResults.find(x =>  x.level <= level && !(x === persona1 || x === persona2) && !x.special);
     }
   }
 
-  private rareFusion(rarePersona: Persona, mainPersona: Persona): Persona {
+  private rareFuse(rarePersona: Persona, mainPersona: Persona): Persona {
     const personae = this.personaManager.getPersonasByArcana(mainPersona.arcana).sort(Persona.sortByLvl);
     const mainPersonaIndex = personae.indexOf(mainPersona);
     let modifier = this.fusonRepository.rareCombos[mainPersona.arcana][this.fusonRepository.rarePersonae.indexOf(rarePersona.name)];
@@ -106,6 +107,8 @@ export class FusonService {
       ||
       x.source[0] === arcana2 && x.source[1] === arcana1
     );
+    if (!arcanaCombo) return null;
+
     return arcanaCombo.result;
   }
 
@@ -120,7 +123,7 @@ export class FusonService {
     }
   }
 
-  private getPossibleCombosByArcana(arcana: string): Array<{firstIngredient: Array<Persona>, secondIngredient: Array<Persona>}> {
+  private getPossibleCombosByResultArcana(arcana: string): Array<{firstIngredient: Array<Persona>, secondIngredient: Array<Persona>}> {
     const arcanaCombos = this.fusonRepository.arcana2Combos.filter(x => x.result === arcana);
     return arcanaCombos.map(x => {
       const firstIngredient = this.personaManager.getPersonasByArcana(x.source[0]);
@@ -136,4 +139,29 @@ export class FusonService {
     }
     return cost;
   }
+
+  public getPersonaFromRecipes(persona: Persona): Array<Recipe> {
+
+    const resultRecipes = [];
+    const allPersonas = this.personaManager.getAllPersonas();
+
+    for (const persona2 of allPersonas ) {
+      let resultPersona;
+      if (persona2.rare || persona.rare) {
+        const rarePersona = persona.rare ? persona : persona2;
+        const normalPersona = persona.rare ? persona2 : persona;
+        resultPersona = this.rareFuse(rarePersona, normalPersona);
+      } else {
+        resultPersona = this.normalFuse(persona, persona2);
+      }
+      if (resultPersona) {
+        const cost = this.getCost([persona, persona2]);
+        resultRecipes.push(new Recipe([persona, persona2], resultPersona, cost));
+      }
+    }
+
+    return resultRecipes;
+
+  }
+
 }

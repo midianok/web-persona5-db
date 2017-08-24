@@ -23,10 +23,8 @@ export class RecipesFromComponent {
     this.routeSubscription = route.params.subscribe(x => {
       const personaName = x.name;
       const persona = personaService.getPersonaByName(personaName);
-      this.recipesAll = fusonService.getPersonaToRecipes(persona);
-      this.recipesToShow = this.recipesAll
-        .sort(recipe => recipe.price)
-        .slice(0, 10);
+      this.recipesAll = fusonService.getPersonaFromRecipes(persona);
+      this.recipesToShow = this.recipesAll.slice();
     });
   }
 
@@ -40,9 +38,7 @@ export class RecipesFromComponent {
               filter.toLowerCase()
             )
         )
-      )
-      .sort(recipe => recipe.price)
-      .slice(0, 10);
+      );
   }
 
   goToPersonaDetails(personaName: string): void {

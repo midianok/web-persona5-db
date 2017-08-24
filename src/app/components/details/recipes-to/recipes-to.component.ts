@@ -24,8 +24,12 @@ export class RecipesToComponent implements OnDestroy{
     this.routeSubscription = route.params.subscribe(x => {
       const personaName = x.name;
       const persona = personaService.getPersonaByName(personaName);
-      this.recipesAll = fusonService.getPersonaToRecipes(persona);
-      this.recipesToShow = this.recipesAll;
+      if (persona.rare){
+        this.recipesToShow = [];
+      } else {
+        this.recipesAll = fusonService.getPersonaToRecipes(persona);
+        this.recipesToShow = this.recipesAll;
+      }
     });
   }
 
