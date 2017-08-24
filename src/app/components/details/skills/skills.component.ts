@@ -16,16 +16,14 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class SkillsComponent implements OnDestroy{
   skills: Array<Skill>;
-  persona: Persona;
   routeSubscription: Subscription;
   constructor(
     skillService: SkillService,
-    personaService: PersonaService,
     route: ActivatedRoute) {
     this.routeSubscription = route.params.subscribe(x => {
       const personaName = x.name;
-      this.persona = personaService.getPersonaByName(personaName);
       this.skills = skillService.getSkillsByPersonaName(personaName);
+
     });
   }
 

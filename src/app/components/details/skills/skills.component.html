@@ -12,12 +12,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let skill of skills">
-    <td>{{skill.getPersonaSkillLevel(persona.name)}}</td>
+  <tr *ngFor="let skill of skills | orderby:'level':'+'">
+    <td>{{skill.level}}</td>
     <td>{{skill.name}}</td>
     <td>{{skill.element}}</td>
     <td class="hidden-md-down">{{skill.effect}}</td>
-    <td>{{skill.cost}}</td>
+    <td>{{skill.costString}}</td>
   </tr>
   </tbody>
 </table>

@@ -1,6 +1,7 @@
 import {Inject} from "@angular/core";
 import {SkillRepository} from "../data/skill-repository";
 import {Skill} from "../model/skill";
+import {Persona} from "../model/persona";
 
 export class SkillService {
   constructor(@Inject(SkillRepository) private skillRepository) {}
@@ -10,12 +11,31 @@ export class SkillService {
   }
 
   getSkillsByPersonaName(personaName: string): Array<Skill> {
-    return this.getAllSkills().filter(x =>
-      x.personas.some(
-        z => z.name === personaName
-      )
-    );
+     const skills = this.getAllSkills()
+       .filter(x => x.personas.some(z => z.name === personaName));
+
+     for (const skill of skills) {
+       const persona = skill.personas.find(x => x.name === personaName);
+       skill.level = persona.level;
+       skill.costString = this.getSkillCost(skill);
+     }
+    return skills;
   }
+
+  getSkillCost(skill: Skill): string {
+    if (skill.element !== 'passive') {
+      if (skill.cost < 100) {
+        return String(skill.cost) + '% HP';
+      }
+      else {
+        return String(skill.cost / 100) + ' SP';
+      }
+    }
+    else {
+      return "-";
+    }
+  }
+
 
   getAllSkills(): Array<Skill>{
     const skills = [];
