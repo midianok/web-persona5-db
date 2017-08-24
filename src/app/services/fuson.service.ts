@@ -12,7 +12,7 @@ export class FusonService {
   public getPersonaToRecipes(persona: Persona): Array<Recipe> {
     const resultRecepie = [];
 
-    if (persona.special){
+    if (persona.special) {
       const recipe = this.getSpecialPersonaRecipes(persona);
       resultRecepie.push(recipe);
       return resultRecepie;
@@ -23,18 +23,19 @@ export class FusonService {
       for (const firstIngredient of combo.firstIngredient) {
         if ( firstIngredient.name === persona.name) continue;
         for (const secondIngredient of combo.secondIngredient) {
+          
           const recepieAlreadyAdded = resultRecepie.some(x =>
             x.ingredients[0] === firstIngredient && x.ingredients[1] === secondIngredient ||
             x.ingredients[0] === secondIngredient && x.ingredients[1] === firstIngredient
           );
-
           if (secondIngredient.name === persona.name ||
-              firstIngredient === secondIngredient ||
+              firstIngredient === secondIngredient   ||
               recepieAlreadyAdded) continue;
-
-          const result = this.normalFuse(firstIngredient, secondIngredient);
+              
+          
+          const result = this.fuse(firstIngredient, secondIngredient);
           if (result && result.name === persona.name) {
-            const price = this.getApproxCost(firstIngredient, secondIngredient);
+            const price = this.getCost(firstIngredient, secondIngredient);
             resultRecepie.push(new Recipe([firstIngredient, secondIngredient], result, price));
           }
         }
@@ -43,13 +44,16 @@ export class FusonService {
     return resultRecepie;
   }
 
-  private normalFuse(persona1: Persona, persona2: Persona ): Persona {
-    if ((persona1.rare || persona2.rare)) {
-      return null;
+  private fuse(persona1: Persona, persona2: Persona): Persona {
+    if ((persona1.rare && !persona2.rare) || (!persona1.rare && persona2.rare)) {
+            var rarePersona = persona1.rare ? persona1 : persona2;
+            var normalPersona = persona1.rare ? persona2 : persona1;
+            const rare = this.rareFusion(rarePersona, normalPersona);
+            return rare;
     }
+    
     const level = 1 + Math.floor((persona1.level + persona2.level) / 2);
     const resultArcana = this.getResultArcana(persona1.arcana, persona2.arcana);
-
     if (persona1.arcana !== persona2.arcana) {
       const possibleResults = this.personaManager.getPersonasByArcana(resultArcana).sort(Persona.sortByLvl);
       return possibleResults.find(x => x.level >= level);
@@ -57,6 +61,24 @@ export class FusonService {
       const possibleResults = this.personaManager.getPersonasByArcana(resultArcana).sort(Persona.sortByLvlDesc);
       return possibleResults.find(x =>  x.level <= level && !(x === persona1 || x === persona2));
     }
+  }
+  
+  private rareFusion(rarePersona: Persona, mainPersona: Persona): Persona {
+        var modifier = this.fusonRepository.rareCombos[mainPersona.arcana][this.fusonRepository.rarePersonae.indexOf(rarePersona.name)];
+        var personae = this.personaManager.getPersonasByArcana(mainPersona.arcana).sort(Persona.sortByLvl);
+        var mainPersonaIndex = personae.indexOf(mainPersona);
+        var newPersona = personae[mainPersonaIndex + modifier];
+        if (!newPersona) {
+            return null;
+        }
+        if (newPersona.special) {
+            if (modifier > 0)
+                modifier++;
+            else if (modifier < 0)
+                modifier--;
+            newPersona = personae[mainPersonaIndex + modifier];
+        }
+        return newPersona;
   }
 
   private getResultArcana(arcana1: string, arcana2: string): string {
@@ -87,7 +109,7 @@ export class FusonService {
     });
   }
 
-  private getApproxCost(persona1: Persona, persona2: Persona): number {
+  private getCost(persona1: Persona, persona2: Persona): number {
     return ((27 * (persona1.level * 2)) + (126 * persona1.level) + 2147) +
            ((27 * (persona2.level * 2)) + (126 * persona2.level) + 2147);
   }

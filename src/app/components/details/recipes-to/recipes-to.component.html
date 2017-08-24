@@ -1,31 +1,36 @@
-<h4 class="text-center">
-  Fusion to this persona
+<h4 *ngIf="recipesToShow.length === 0" class="text-center">
+  No fusions to this persona
 </h4>
+  
+<div *ngIf="recipesToShow.length > 0">
+  <h4 class="text-center">
+    Fusion to this persona | {{recipesToShow.length}}
+  </h4>
 
-<div class="form-group">
+  <div class="form-group">
   <input #recipiFilter
          class="form-control"
          placeholder="Name filter"
          (input)="filterByName()">
+  </div>
+  <table id="test" class="table-striped">
+    <thead>
+    <tr>
+      <th>N</th>
+      <th>Cost</th>
+      <th colspan="6">Ingredients</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let recipi of recipesToShow | orderby:'price':'+' | limit:10; let i = index ">
+      <td>{{i + 1}}</td>
+      <td>{{recipi.price | currency:'JPY':true}}</td>
+      <td *ngFor="let ingredient of recipi.ingredients"
+          (click)="goToPersonaDetails(ingredient.name)"
+          class="ingredient">
+        {{ingredient.name}} | {{ingredient.arcana}} | {{ingredient.level}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
-
-<table id="test" class="table-striped">
-  <thead>
-  <tr>
-    <th>N</th>
-    <th>Cost</th>
-    <th colspan="6">Ingredients</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let recipi of recipesToShow | orderby:'price':'+' | limit:10; let i = index ">
-    <td>{{i + 1}}</td>
-    <td>{{recipi.price | currency:'JPY':true}}</td>
-    <td *ngFor="let ingredient of recipi.ingredients"
-        (click)="goToPersonaDetails(ingredient.name)"
-        class="ingredient">
-      {{ingredient.name}} | {{ingredient.arcana}} | {{ingredient.level}}
-    </td>
-  </tr>
-  </tbody>
-</table>
