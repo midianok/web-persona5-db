@@ -1,0 +1,33 @@
+[debug] [2017-08-22T20:19:56.046Z] ----------------------------------------------------------------------
+[debug] [2017-08-22T20:19:56.048Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\Midian\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-08-22T20:19:56.048Z] CLI Version:  3.9.1
+[debug] [2017-08-22T20:19:56.048Z] Platform:     win32
+[debug] [2017-08-22T20:19:56.048Z] Node Version: v8.3.0
+[debug] [2017-08-22T20:19:56.049Z] Time:         Tue Aug 22 2017 23:19:56 GMT+0300 (RTZ 2 (зима))
+[debug] [2017-08-22T20:19:56.049Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-22T20:19:56.067Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-22T20:19:56.067Z] > authorizing via signed-in user
+[debug] [2017-08-22T20:19:56.069Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-08-22T20:19:56.069Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/a07HzM9fEjgSYCNzKRRC2AQzJOv_2ezoQoq46uBf1kY',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Aug 22 2017 23:19:56 GMT+0300 (RTZ 2 (зима))
+[debug] [2017-08-22T20:19:56.159Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-22T20:19:56.166Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/persona5db  
+ Tue Aug 22 2017 23:19:56 GMT+0300 (RTZ 2 (зима))
+[debug] [2017-08-22T20:19:56.975Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-22T20:19:56.977Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/persona5db/tokens  
+ Tue Aug 22 2017 23:19:56 GMT+0300 (RTZ 2 (зима))
+[debug] [2017-08-22T20:19:57.691Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'persona5db'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2017-08-22T20:19:59.168Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/persona5db/uploads/-KsAaW0ghunzffkuCmCJ?fileCount=8&message=  
+ Tue Aug 22 2017 23:19:59 GMT+0300 (RTZ 2 (зима))
+[debug] [2017-08-22T20:20:00.890Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-22T20:20:00.891Z] [hosting] .tgz uploaded successfully, waiting for extraction
