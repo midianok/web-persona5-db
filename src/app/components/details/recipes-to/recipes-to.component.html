@@ -13,7 +13,7 @@
          placeholder="Name filter"
          (input)="filterByName()">
   </div>
-  <table id="test" class="table-striped">
+  <table class="table-striped">
     <thead>
     <tr>
       <th>N</th>
@@ -22,14 +22,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let recipi of recipesToShow | orderby:'price':'+' | limit:10; let i = index ">
+    <tr *ngFor="let recipi of recipesToShow | orderby:'price':'+' | limit: limit; let i = index ">
       <td>{{i + 1}}</td>
       <td>{{recipi.price | currency:'JPY':true}}</td>
       <td *ngFor="let ingredient of recipi.ingredients"
           (click)="goToPersonaDetails(ingredient.name)"
-          class="ingredient">
-        {{ingredient.name}} | {{ingredient.arcana}} | {{ingredient.level}}
+          class="clickable">
+        {{ingredient.name}} ({{ingredient.arcana}}|{{ingredient.level}})
       </td>
+    </tr>
+    <tr *ngIf="recipesToShow.length > 10">
+      <td (click)="toggleLimit()" class="clickable" style="text-align: center" colspan="4"> ◯ ◯ ◯ </td>
     </tr>
     </tbody>
   </table>

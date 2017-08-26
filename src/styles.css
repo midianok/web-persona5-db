@@ -4,4 +4,34 @@
 
 .container{
   padding-top: 10px;
+  margin-bottom: 15px;
+}
+
+.clickable{
+  color: dodgerblue;
+}
+
+.clickable:hover{
+  cursor: pointer;
+  background: #d7d7d7;
+}
+
+.wk {
+  color: #f55535;
+}
+
+.rs {
+  color: #31b0d5;
+}
+
+.nu {
+  color: #5e5e5e;
+}
+
+.rp {
+  color: #caa83c;
+}
+
+.ab {
+  color: #4cae4c;
 }

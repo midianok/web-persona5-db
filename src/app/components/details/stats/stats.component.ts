@@ -7,7 +7,7 @@ import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
-  styleUrls: ['../details.component.css', './stats.component.css']
+  styleUrls: ['../details.component.css']
 })
 export class StatsComponent implements OnDestroy{
   persona: Persona;

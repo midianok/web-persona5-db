@@ -67,7 +67,8 @@ export class FusonService {
   }
 
   private normalFuse(persona1: Persona, persona2: Persona): Persona {
-    if (persona1.rare || persona2.rare) {
+    if (!persona1.rare && persona2.rare ||
+         persona1.rare && !persona2.rare) {
       return null;
     }
     const level = 1 + Math.floor((persona1.level + persona2.level) / 2);
@@ -144,10 +145,9 @@ export class FusonService {
 
     const resultRecipes = [];
     const allPersonas = this.personaManager.getAllPersonas();
-
+    let resultPersona;
     for (const persona2 of allPersonas ) {
-      let resultPersona;
-      if (persona2.rare || persona.rare) {
+      if (!persona2.rare && persona.rare || persona2.rare && !persona.rare) {
         const rarePersona = persona.rare ? persona : persona2;
         const normalPersona = persona.rare ? persona2 : persona;
         resultPersona = this.rareFuse(rarePersona, normalPersona);
@@ -156,7 +156,7 @@ export class FusonService {
       }
       if (resultPersona) {
         const cost = this.getCost([persona, persona2]);
-        resultRecipes.push(new Recipe([persona, persona2], resultPersona, cost));
+        resultRecipes.push(new Recipe([persona2], resultPersona, cost));
       }
     }
 

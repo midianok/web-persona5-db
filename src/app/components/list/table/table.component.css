@@ -1,5 +1,5 @@
 * {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 0;
   margin-right: 0;
   text-align: center;
@@ -41,29 +41,7 @@ td, th {
   padding: 7px;
 }
 
-
 .right-border {
   border-right: 1px solid #dfdff9;
 }
-
-.wk {
-  color: #f55535;
-}
-
-.rs {
-  color: #31b0d5;
-}
-
-.nu {
-  color: #5e5e5e;
-}
-
-.rp {
-  color: #caa83c;
-}
-
-.ab {
-  color: #4cae4c;
-}
-
 

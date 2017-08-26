@@ -7,7 +7,7 @@ import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'app-elements',
   templateUrl: './elements.component.html',
-  styleUrls: ['../details.component.css', './elements.component.css']
+  styleUrls: ['../details.component.css']
 })
 export class ElementsComponent implements OnDestroy{
   persona: Persona;

@@ -1,4 +1,3 @@
-///<reference path="../../../../../node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts"/>
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FusonService } from "../../../services/fuson.service";
@@ -15,13 +14,16 @@ export class RecipesToComponent implements OnDestroy{
   recipesAll: Array<Recipe>;
   recipesToShow: Array<Recipe>;
   routeSubscription: Subscription;
+  limit = 10;
   @ViewChild('recipiFilter') recipiFilter: ElementRef;
+
   constructor(
     personaService: PersonaService,
     fusonService: FusonService,
     route: ActivatedRoute,
     private router: Router) {
     this.routeSubscription = route.params.subscribe(x => {
+      this.limit = 10;
       const personaName = x.name;
       const persona = personaService.getPersonaByName(personaName);
       if (persona.rare){
@@ -48,6 +50,13 @@ export class RecipesToComponent implements OnDestroy{
 
   goToPersonaDetails(personaName: string): void {
     this.router.navigate(['details', personaName]);
+  }
+
+  toggleLimit() {
+    if (this.limit === 10)
+      this.limit = 0;
+    else
+      this.limit = 10;
   }
 
   ngOnDestroy(): void {

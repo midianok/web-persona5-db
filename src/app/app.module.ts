@@ -14,7 +14,7 @@ import { SkillsComponent } from './components/details/skills/skills.component';
 import { StatsComponent } from './components/details/stats/stats.component';
 import { ElementsComponent } from './components/details/elements/elements.component';
 import { RecipesFromComponent } from './components/details/recipes-from/recipes-from.component';
-import {LimitPipe} from "./infrastructure/limit.pipe";
+import { LimitPipe } from "./infrastructure/limit.pipe";
 
 const appRoutes: Routes = [
   { path: '', component: ListComponent },

@@ -24,7 +24,7 @@
   <tbody>
     <tr  *ngFor="let persona of getPersonasToShow() | orderby:'level':'+'">
       <td class="right-border">{{persona.level}}</td>
-      <td (click)="goToPersonaDetails(persona.name)" class="right-border name">{{persona.name}}</td>
+      <td (click)="goToPersonaDetails(persona.name)" class="right-border clickable">{{persona.name}}</td>
       <td class="right-border">{{persona.arcana}}</td>
       <td class="hidden-md-down" >{{persona.strength}}</td>
       <td class="hidden-md-down" >{{persona.magic}}</td>
