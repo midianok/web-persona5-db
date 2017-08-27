@@ -9,7 +9,9 @@ import {PersonaService} from "../../../services/persona.service";
 })
 export class FilterComponent {
   @ViewChild('searchInput') searchField: ElementRef;
-  constructor(private personaService: PersonaService) { }
+  constructor(private personaService: PersonaService) {
+    this.personaService.addFilterByName('');
+  }
 
   getCurrentAlimentFilters() {
     return this.personaService.getCurrentAlimentFilters();

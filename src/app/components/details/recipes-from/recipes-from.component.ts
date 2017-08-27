@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-recipes-from',
   templateUrl: './recipes-from.component.html',
-  styleUrls: ['../details.component.css']
+  styleUrls: ['../details.component.css', './recipes-from.component.css']
 })
 export class RecipesFromComponent implements OnDestroy {
   recipesAll: Array<Recipe>;

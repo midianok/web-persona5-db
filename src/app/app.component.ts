@@ -8,7 +8,9 @@ import { PersonaService } from "./services/persona.service";
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  template: `
+    <h1 class="text-center"><a routerLink="/">Persona 5 fuson calculator</a></h1>
+    <router-outlet></router-outlet>`,
   providers: [
     PersonaRepository,
     SkillRepository,

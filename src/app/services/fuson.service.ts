@@ -77,7 +77,7 @@ export class FusonService {
 
     if (persona1.arcana !== persona2.arcana) {
       const possibleResults = this.personaManager.getPersonasByArcana(resultArcana).sort(Persona.sortByLvl);
-      return possibleResults.find(x => x.level >= level);
+      return possibleResults.find(x => x.level >= level && !(x.special || x.rare));
     } else {
       const possibleResults = this.personaManager.getPersonasByArcana(resultArcana).sort(Persona.sortByLvlDesc);
       return possibleResults.find(x =>  x.level <= level && !(x === persona1 || x === persona2) && !x.special);

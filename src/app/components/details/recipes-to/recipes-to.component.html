@@ -4,7 +4,7 @@
 
 <div *ngIf="recipesAll.length > 0">
   <h4 class="text-center">
-    Fusion to this persona | {{recipesAll.length}}
+    Fusions to this persona: {{recipesAll.length}}
   </h4>
 
   <div class="form-group">
@@ -28,7 +28,7 @@
       <td *ngFor="let ingredient of recipi.ingredients"
           (click)="goToPersonaDetails(ingredient.name)"
           class="clickable">
-        {{ingredient.name}} ({{ingredient.arcana}}|{{ingredient.level}})
+        {{ingredient.name}} ({{ingredient.arcana}} {{ingredient.level}})
       </td>
     </tr>
     <tr *ngIf="recipesToShow.length > 10">
