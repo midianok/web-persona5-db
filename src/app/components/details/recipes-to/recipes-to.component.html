@@ -32,7 +32,10 @@
       </td>
     </tr>
     <tr *ngIf="recipesToShow.length > 10">
-      <td (click)="toggleLimit()" class="clickable" style="text-align: center" colspan="4"> ◯ ◯ ◯ </td>
+      <td (click)="toggleLimit()" class="clickable" style="text-align: center" colspan="4">
+        <span *ngIf="limit === 10">◯ ◯ ◯</span>
+        <span *ngIf="limit === 0">↑ ↑ ↑</span>
+      </td>
     </tr>
     </tbody>
   </table>
