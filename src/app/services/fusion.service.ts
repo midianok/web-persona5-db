@@ -1,12 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
-import {FusonRepository} from '../data/fuson-repository';
+import {FusionRepository} from '../data/fusion-repository';
 import {PersonaService} from './persona.service';
 import {Persona} from '../model/persona';
 import {Recipe} from '../model/recipe';
 
 @Injectable()
-export class FusonService {
-  constructor(@Inject(FusonRepository) private fusonRepository,
+export class FusionService {
+  constructor(@Inject(FusionRepository) private fusonRepository,
               @Inject(PersonaService) private personaManager) { }
 
   public getPersonaToRecipes(persona: Persona): Array<Recipe> {

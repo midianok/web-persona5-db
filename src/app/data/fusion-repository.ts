@@ -1,4 +1,4 @@
-export class FusonRepository {
+export class FusionRepository {
   private rarePersonae = [
     "Regent",
     "Queen's Necklace",

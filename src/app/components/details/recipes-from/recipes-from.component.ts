@@ -2,7 +2,7 @@ import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {Recipe} from "../../../model/recipe";
 import {Subscription} from "rxjs/Subscription";
 import {PersonaService} from "../../../services/persona.service";
-import {FusonService} from "../../../services/fuson.service";
+import {FusionService} from "../../../services/fusion.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -18,7 +18,7 @@ export class RecipesFromComponent implements OnDestroy {
   @ViewChild('recipiFilter') recipiFilter: ElementRef;
   constructor(
     personaService: PersonaService,
-    fusonService: FusonService,
+    fusonService: FusionService,
     route: ActivatedRoute,
     private router: Router) {
     this.routeSubscription = route.params.subscribe(x => {
